@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>This is a Dashboard</h1>
+<br>
+<br>
+<table class="table">
+    <tr style="text-decoration: underline;">
+        <th>Name</th>
+        <th>Age</th>
+        <th>Date Created</th>
+    </tr>
+    {% for customer in customers%}
+    <tr>
+        <td>
+            <a href="{% url 'customer' customer.id %}">{{customer.Name}}</a> 
+        </td>
+        <td>
+            {{customer.Age}}
+        </td>
+        <td>
+            {{customer.DateCreated}}
+        </td>
+    </tr>
+    
+    {% endfor %}
+</table>
+<a href="{% url 'create_order' %}"><button type="button" class="btn btn-success">Create Order</button></a>
+<a href="{% url 'home' %}"><button type="button" class="btn btn-success">Home</button></a>
+</table>
+
+<br>
+
+<table class="table">
+    <tr style="text-decoration: underline;">
+        <th> Name </th>
+        <th> Product </th>
+        <th> Status </th>
+        <th> Update </th>
+        <th> Delete </th>
+    </tr>
+    {% for order in ord %}
+    <tr>
+        <td> {{order.customer}} </td>
+        <td> {{order.product}} </td>
+        <td>{{order.status}}</td>
+        <td> <a href="{% url 'update_order' order.id %}"><button type="button" class="btn btn-success">Update Order</button></a> </td>
+        <td> <a href="{% url 'delete_order' order.id %}"><button type="button" class="btn btn-success">Delete Order</button></a> </td>
+    </tr>
+
+    {% endfor %}
+
+</table>
+{% endblock %}
